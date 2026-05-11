@@ -1,0 +1,896 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Aislo Bahrain | Senior Project</title>
+
+<style>
+*{margin:0;padding:0;box-sizing:border-box;font-family:Arial,Helvetica,sans-serif;transition:.3s ease}
+html{scroll-behavior:smooth}
+body{
+  background:
+  radial-gradient(circle at top left,#f4ffef 0%,transparent 20%),
+  radial-gradient(circle at bottom right,#edf9e8 0%,transparent 20%),
+  #fbfff7;
+  color:#14351f;
+}
+.page{width:100%;overflow:hidden}
+
+header{
+  height:82px;background:rgba(255,255,255,.92);backdrop-filter:blur(12px);
+  display:flex;align-items:center;justify-content:space-between;
+  padding:0 7%;box-shadow:0 8px 30px rgba(0,0,0,.06);
+  position:sticky;top:0;z-index:50;border-bottom-left-radius:12px;border-bottom-right-radius:12px
+}
+.logo{display:flex;align-items:center;gap:12px}
+.logo img{width:80px;height:80px;object-fit:contain}
+.logo-text{color:#159428;font-weight:900;font-size:26px;line-height:.9}
+.logo-text small{display:block;font-size:11px;letter-spacing:2px;color:#18892a}
+nav{display:flex;gap:36px;align-items:center}
+nav a{text-decoration:none;color:#15351f;font-size:14px;font-weight:800;position:relative}
+nav a:hover,.active{color:#159428}
+nav a::after{content:"";position:absolute;left:0;bottom:-10px;width:0;height:2px;background:#159428}
+nav a:hover::after,.active::after{width:100%}
+.download{
+  background:#159428;color:#fff;text-decoration:none;border-radius:28px;
+  padding:14px 24px;font-weight:800;font-size:14px;
+  box-shadow:0 18px 35px rgba(21,148,40,.18)
+}
+.download:hover,.btn:hover{transform:translateY(-3px)}
+
+.hero{
+  min-height:650px;
+  background:radial-gradient(circle at 78% 42%,#dbeed2 0 24%,transparent 25%),
+  linear-gradient(100deg,#fbfff3 0%,#eef8e6 58%,#f8fff3 100%);
+  display:grid;grid-template-columns:46% 54%;align-items:center;
+  padding:60px 7% 35px;position:relative;overflow:hidden
+}
+.kicker{color:#159428;font-weight:900;font-size:18px;margin-bottom:18px}
+.hero h1{font-size:78px;line-height:.98;font-weight:900;margin-bottom:26px;letter-spacing:-2px}
+.hero h1 span{color:#159428}
+.hero p{font-size:18px;line-height:1.55;color:#2d4034;max-width:520px;margin-bottom:28px}
+.actions{display:flex;gap:15px;margin-bottom:28px}
+.btn{
+  display:inline-flex;align-items:center;gap:16px;background:#159428;color:#fff;
+  text-decoration:none;border-radius:32px;padding:14px 24px;font-weight:900;font-size:15px;
+  box-shadow:0 18px 35px rgba(21,148,40,.18)
+}
+.btn.white{background:#fff;color:#14351f;border:1px solid #cfe6cf}
+.arrow{font-size:20px}
+
+.visual{height:560px;position:relative;overflow:visible}
+.circle-bg{position:absolute;right:5px;top:0;width:560px;height:560px;background:#dcefd5;border-radius:50%}
+.hero-basket{
+  position:absolute;right:130px;top:130px;width:440px;height:300px;
+  object-fit:cover;object-position:center;border-radius:32px;mix-blend-mode:multiply;
+  filter:drop-shadow(0 28px 28px rgba(0,0,0,.18))
+}
+.hero-phone{
+  position:absolute;right:70px;top:75px;width:255px;height:520px;
+  background:#101b16;border-radius:46px;padding:10px;
+  box-shadow:0 28px 55px rgba(0,0,0,.25);z-index:4;
+}
+.hero-phone .screen{background:#fbfff7;width:100%;height:100%;border-radius:34px;overflow:hidden}
+
+section{padding:56px 7%}
+.label{font-size:13px;color:#159428;font-weight:900;margin-bottom:14px;letter-spacing:.5px;text-transform:uppercase}
+.title{font-size:48px;line-height:1.15;font-weight:900;margin-bottom:20px;letter-spacing:-1px}
+.title span{color:#159428}
+.text{color:#415144;font-size:15px;line-height:1.8;max-width:700px}
+
+.showcase{padding:80px 7%;background:#f4faef}
+.showcase-box{
+  display:grid;grid-template-columns:50% 50%;gap:40px;align-items:center;
+  background:white;border-radius:40px;overflow:hidden;
+  box-shadow:0 20px 50px rgba(0,0,0,.06)
+}
+.showcase-image{height:100%}
+.showcase-image img{width:100%;height:100%;object-fit:cover}
+.showcase-content{padding:50px}
+.showcase-content h2{font-size:52px;line-height:1.05;margin-bottom:24px;font-weight:900}
+.showcase-content h2 span{color:#159428}
+.showcase-content p{font-size:17px;line-height:1.9;color:#526354;margin-bottom:22px}
+.showcase-list{display:grid;gap:18px}
+.showcase-item{display:flex;gap:14px;align-items:flex-start}
+
+.about-ui{display:grid;grid-template-columns:43% 57%;gap:40px;align-items:start}
+.badges{display:flex;gap:14px;margin:28px 0}
+.badge{
+  background:#f0f7e9;border-radius:13px;padding:14px 18px;display:flex;gap:10px;
+  align-items:center;min-width:150px;box-shadow:0 18px 45px rgba(0,0,0,.05)
+}
+.badge b{font-size:12px}
+.badge small{display:block;color:#657266;font-size:11px}
+.badge-icon{font-size:28px;color:#159428}
+
+.previews{display:grid;grid-template-columns:repeat(4,1fr);gap:34px;align-items:start}
+.mock{text-align:center}
+.mockphone{
+  position:relative;width:185px;height:390px;margin:auto;background:#101b16;
+  border-radius:34px;padding:8px;overflow:hidden;
+  box-shadow:0 16px 35px rgba(0,0,0,.14), inset 0 0 0 2px rgba(255,255,255,.05);
+}
+.mockphone::before{
+  content:"";position:absolute;top:10px;left:50%;transform:translateX(-50%);
+  width:54px;height:6px;background:#1d1d1d;border-radius:20px;z-index:20;
+}
+.mockphone img{width:100%;height:100%;object-fit:cover;background:white;border-radius:32px}
+.mock-tab{
+  margin-top:14px;background:#dcefd5;border-radius:15px;padding:10px;
+  color:#159428;font-weight:900;font-size:16px;width:185px;
+  margin-left:auto;margin-right:auto;box-shadow:0 8px 18px rgba(0,0,0,.05)
+}
+
+.content-section{background:#fbfff7;position:relative}
+.content-section::before{
+  content:"";position:absolute;width:180px;height:180px;background:#edf9e7;
+  border-radius:50%;right:-60px;top:40px;z-index:0
+}
+.content-section>*{position:relative;z-index:2}
+.grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+.info{
+  min-height:205px;border-radius:18px;padding:26px;position:relative;overflow:hidden;
+  box-shadow:0 18px 45px rgba(0,0,0,.05)
+}
+.info h3{font-size:15px;margin-bottom:18px;text-transform:uppercase}
+.info p,.info li{font-size:14px;line-height:1.6}
+.one{background:linear-gradient(135deg,#e7f7df,#f6fff1)}
+.two{background:linear-gradient(135deg,#fff5dd,#fffdf4)}
+.three{background:linear-gradient(135deg,#e0f8ff,#f3fffb)}
+
+.solution-premium{padding:90px 7%;background:#fbfff7}
+.solution-card{
+  min-height:620px;border-radius:38px;
+  background:
+    radial-gradient(circle at 72% 48%, rgba(21,148,40,.16) 0 24%, transparent 25%),
+    linear-gradient(115deg,#ffffff 0%,#ffffff 47%,#edf9e7 48%,#f6fff2 100%);
+  box-shadow:0 25px 70px rgba(0,0,0,.08);
+  overflow:hidden;display:grid;grid-template-columns:48% 52%;
+  align-items:center;padding:70px 65px;position:relative;
+}
+.solution-card::after{
+  content:"AISLO";position:absolute;right:-45px;top:70px;
+  font-size:160px;font-weight:900;color:rgba(21,148,40,.08);
+  writing-mode:vertical-rl;letter-spacing:8px;
+}
+.solution-left{position:relative;z-index:3}
+.solution-left .label{font-size:16px;margin-bottom:25px}
+.solution-left h2{
+  font-size:68px;line-height:1.05;font-weight:900;letter-spacing:-2px;
+  color:#12351f;margin-bottom:25px;
+}
+.solution-left h2 span{color:#159428}
+.solution-line{
+  width:65px;height:6px;background:#7cc857;border-radius:30px;
+  margin-bottom:35px;position:relative;
+}
+.solution-line::after{
+  content:"";width:8px;height:8px;background:#7cc857;border-radius:50%;
+  position:absolute;left:78px;top:-1px;
+}
+.solution-left p{
+  font-size:18px;line-height:1.75;color:#3d4d42;
+  max-width:560px;margin-bottom:35px;
+}
+.solution-right{height:520px;position:relative;z-index:3}
+.solution-phone{
+  position:absolute;right:70px;top:90px;width:260px;height:520px;
+  background:#101b16;border-radius:48px;padding:10px;
+  transform:rotate(10deg);box-shadow:0 35px 65px rgba(0,0,0,.25);z-index:4;
+}
+.solution-phone::before{
+  content:"";position:absolute;top:18px;left:50%;transform:translateX(-50%);
+  width:78px;height:22px;background:#050505;border-radius:20px;z-index:20;
+}
+.solution-phone img{width:100%;height:100%;object-fit:cover;border-radius:38px;background:white}
+
+.flow-section{
+  padding:90px 7% 120px;
+  background:#fbfff7;
+  position:relative;
+  overflow:hidden;
+}
+
+.flow-section::after{
+  content:"";
+  position:absolute;
+  right:-95px;
+  top:35px;
+  width:300px;
+  height:300px;
+  background:#e6f5df;
+  border-radius:50%;
+  z-index:0;
+}
+
+.flow-header{
+  max-width:560px;
+  position:relative;
+  z-index:2;
+}
+
+.flow-header h2{
+  font-size:64px;
+  line-height:1.05;
+  font-weight:900;
+  color:#14351f;
+  margin-bottom:24px;
+  letter-spacing:-1.5px;
+}
+
+.flow-header h2 span{
+  display:block;
+  color:#159428;
+}
+
+.flow-header p{
+  font-size:18px;
+  line-height:1.8;
+  color:#53665a;
+}
+
+.flow-map{
+  margin-top:85px;
+  position:relative;
+  min-height:470px;
+  z-index:2;
+}
+
+.flow-line{
+  position:absolute;
+  top:65px;
+  left:15px;
+  width:96%;
+  height:180px;
+  z-index:1;
+}
+
+.flow-line svg{
+  width:100%;
+  height:100%;
+  overflow:visible;
+}
+
+.flow-line path{
+  fill:none;
+  stroke:#159428;
+  stroke-width:5;
+  stroke-linecap:round;
+  stroke-dasharray:12 16;
+}
+
+.flow-step{
+  position:absolute;
+  width:230px;
+  z-index:3;
+}
+
+.flow-dot{
+  width:58px;
+  height:58px;
+  background:white;
+  border-radius:50%;
+  box-shadow:0 18px 35px rgba(0,0,0,.10);
+  position:relative;
+  margin-bottom:58px;
+}
+
+.flow-dot::after{
+  content:"";
+  width:26px;
+  height:26px;
+  background:#159428;
+  border-radius:50%;
+  position:absolute;
+  top:50%;
+  left:50%;
+  transform:translate(-50%,-50%);
+}
+
+.flow-number{
+  position:absolute;
+  font-size:128px;
+  font-weight:900;
+  color:rgba(21,148,40,.08);
+  top:-95px;
+  left:0;
+  z-index:-1;
+}
+
+.flow-step h3{
+  font-size:17px;
+  color:#14351f;
+  margin-bottom:22px;
+  font-weight:900;
+  text-transform:uppercase;
+}
+
+.flow-step p{
+  font-size:15px;
+  line-height:1.9;
+  color:#45554a;
+}
+
+.step-1{left:0;top:110px}
+.step-2{left:22%;top:50px}
+.step-3{left:42%;top:115px}
+.step-4{left:61%;top:50px}
+.step-5{left:78%;top:110px}
+
+.flow-trolley{
+  position:absolute;
+  right:15px;
+  top:-25px;
+  width:245px;
+  z-index:5;
+  transform:rotate(-6deg);
+  filter:drop-shadow(0 22px 25px rgba(0,0,0,.12));
+  animation:floatCart 3s ease-in-out infinite;
+}
+
+.flow-arrow{
+  position:absolute;
+  right:-8px;
+  top:170px;
+  font-size:58px;
+  color:#159428;
+  transform:rotate(-28deg);
+  z-index:6;
+}
+
+@keyframes floatCart{
+  0%{transform:translateY(0) rotate(-6deg)}
+  50%{transform:translateY(-14px) rotate(-4deg)}
+  100%{transform:translateY(0) rotate(-6deg)}
+}
+
+@media(max-width:950px){
+  .flow-header h2{font-size:42px}
+
+  .flow-map{
+    min-height:auto;
+    display:grid;
+    gap:22px;
+  }
+
+  .flow-line,
+  .flow-trolley,
+  .flow-arrow{
+    display:none;
+  }
+
+  .flow-step{
+    position:relative;
+    left:auto !important;
+    top:auto !important;
+    width:100%;
+    background:white;
+    padding:24px;
+    border-radius:22px;
+    box-shadow:0 18px 45px rgba(0,0,0,.06);
+  }
+
+  .flow-dot{
+    margin-bottom:18px;
+  }
+
+  .flow-number{
+    right:20px;
+    left:auto;
+    top:0;
+    font-size:80px;
+  }
+}
+
+.features-section{
+  padding:90px 7%;
+  background:#f7fff2;
+  position:relative;
+  overflow:hidden;
+}
+
+.features-section::before{
+  content:"";
+  position:absolute;
+  left:-90px;
+  bottom:-90px;
+  width:260px;
+  height:260px;
+  background:#e6f5df;
+  border-radius:50%;
+}
+
+.features-section::after{
+  content:"";
+  position:absolute;
+  right:-70px;
+  top:40px;
+  width:180px;
+  height:180px;
+  border:1px solid rgba(21,148,40,.18);
+  border-radius:26px;
+  transform:rotate(12deg);
+}
+
+.features-head{
+  text-align:center;
+  margin-bottom:55px;
+  position:relative;
+  z-index:2;
+}
+
+.features-head .label{
+  margin-bottom:14px;
+}
+
+.features-head h2{
+  font-size:56px;
+  line-height:1.05;
+  font-weight:900;
+  color:#14351f;
+}
+
+.features-head h2 span{
+  color:#159428;
+}
+
+.features-grid{
+  display:grid;
+  grid-template-columns:repeat(5,1fr);
+  gap:22px;
+  position:relative;
+  z-index:2;
+}
+
+.feature-card{
+  background:white;
+  border-radius:28px;
+  padding:34px 24px;
+  min-height:250px;
+  box-shadow:0 20px 50px rgba(0,0,0,.06);
+  border:1px solid rgba(21,148,40,.08);
+  position:relative;
+  overflow:hidden;
+}
+
+.feature-card::before{
+  content:"";
+  position:absolute;
+  right:-35px;
+  top:-35px;
+  width:105px;
+  height:105px;
+  background:#eff8ec;
+  border-radius:50%;
+}
+
+.feature-card:hover{
+  transform:translateY(-10px);
+  box-shadow:0 30px 70px rgba(21,148,40,.12);
+}
+
+.feature-icon{
+  width:74px;
+  height:74px;
+  background:#eff8ec;
+  border-radius:24px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:34px;
+  margin-bottom:28px;
+  position:relative;
+  z-index:2;
+}
+
+.feature-card h3{
+  font-size:18px;
+  color:#14351f;
+  margin-bottom:12px;
+  font-weight:900;
+}
+
+.feature-card p{
+  font-size:14px;
+  line-height:1.7;
+  color:#53665a;
+}
+
+@media(max-width:950px){
+  .features-grid{
+    grid-template-columns:1fr;
+  }
+
+  .features-head h2{
+    font-size:42px;
+  }
+}
+
+.team-list{display:grid;grid-template-columns:repeat(2,1fr);gap:22px;margin-top:20px}
+.member{
+  background:#fff;border-radius:20px;padding:24px;
+  box-shadow:0 18px 45px rgba(0,0,0,.05);
+  display:flex;justify-content:space-between;align-items:center
+}
+.member h4{font-size:22px;margin-bottom:7px;color:#1f3d2c}
+.member p{margin:4px 0;font-size:16px;color:#555}
+.member span{font-size:16px;color:#2e7d32;font-weight:600}
+.people{font-size:70px}
+
+footer{
+  min-height:70px;background:linear-gradient(90deg,#119322,#16a52d);color:#fff;
+  display:flex;align-items:center;justify-content:space-between;
+  padding:18px 7%;font-size:14px;gap:20px;flex-wrap:wrap
+}
+.flogo{display:flex;align-items:center;gap:10px;font-size:24px;font-weight:900}
+.flogo img{width:62px;height:62px;object-fit:contain;background:white;border-radius:50%;padding:3px}
+.topbtn{
+  width:42px;height:42px;border-radius:50%;background:#fff;color:#119322;
+  display:flex;align-items:center;justify-content:center;font-weight:900;
+  text-decoration:none;font-size:22px
+}
+.topbtn:hover{transform:translateY(-4px) scale(1.05)}
+
+@media(max-width:950px){
+  nav{display:none}
+  .hero,.about-ui,.showcase-box,.solution-card{grid-template-columns:1fr}
+  .hero h1{font-size:52px}
+  .previews,.features,.grid-3,.team-list{grid-template-columns:1fr}
+  .visual{height:520px}
+  .feature{border-right:0}
+  .badges{flex-direction:column}
+  .showcase-content{padding:30px}
+  .showcase-content h2{font-size:38px}
+  .solution-card{padding:45px 28px}
+  .solution-left h2{font-size:48px}
+  .solution-right{height:560px;margin-top:35px}
+  .solution-phone{right:50%;transform:translateX(50%) rotate(5deg)}
+  .flow-header h2{font-size:42px}
+  .flow-map{min-height:auto;display:grid;gap:22px}
+  .flow-line{display:none}
+  .flow-step{
+    position:relative;
+    left:auto !important;
+    top:auto !important;
+    width:100%;
+    background:white;
+    padding:24px;
+    border-radius:22px;
+    box-shadow:0 18px 45px rgba(0,0,0,.06);
+  }
+  .flow-number{right:20px;left:auto;top:0;font-size:80px}
+}
+</style>
+</head>
+
+<body id="top">
+<div class="page">
+
+<header>
+  <div class="logo">
+    <img src="aislo_logo.png" alt="Aislo Logo">
+    <div class="logo-text">Aislo<small>BAHRAIN</small></div>
+  </div>
+
+  <nav>
+    <a class="active" href="#home">Home</a>
+    <a href="#about">About Project</a>
+    <a href="#features">Features</a>
+    <a href="#ui">UI Design</a>
+    <a href="#exhibition">Exhibition</a>
+    <a href="#team">About Us</a>
+    <a href="#contact">Contact</a>
+  </nav>
+
+  <a class="download" href="#ui">⌄ Download App</a>
+</header>
+
+<main id="home" class="hero">
+  <div>
+    <div class="kicker">Aislo Bahrain</div>
+    <h1>Smart Shopping<br>Made <span>Simple</span></h1>
+    <p>A smart in-store navigation and budget planning application that makes grocery shopping easier, faster and more efficient.</p>
+
+    <div class="actions">
+      <a class="btn" href="#features">Explore Features <span class="arrow">→</span></a>
+      <a class="btn white" href="#ui">See UI Design <span class="arrow">→</span></a>
+    </div>
+  </div>
+
+  <div class="visual">
+    <div class="circle-bg"></div>
+    <img class="hero-basket" src="greenbasket.png" alt="Green grocery basket">
+    <div class="hero-phone">
+      <div class="screen">
+        <img src="home.png" style="width:100%;height:100%;object-fit:cover;background:white;border-radius:34px;" alt="Aislo Home Screen">
+      </div>
+    </div>
+  </div>
+</main>
+
+<section class="showcase">
+  <div class="showcase-box">
+    <div class="showcase-image">
+      <img src="shopping-cart.jpg" alt="Smart Shopping">
+    </div>
+
+    <div class="showcase-content">
+      <div class="label">SMART SHOPPING EXPERIENCE</div>
+      <h2>Making Grocery Shopping <span>Faster & Smarter</span></h2>
+      <p>
+        Aislo Bahrain helps customers navigate supermarkets easily, organize their shopping journey,
+        control spending, and enjoy a more modern shopping experience.
+      </p>
+
+      <div class="showcase-list">
+        <div class="showcase-item">
+          <div class="showcase-icon">📍</div>
+          <div><b>Store Navigation</b><p>Quickly find products using smart aisle guidance.</p></div>
+        </div>
+
+        <div class="showcase-item">
+          <div class="showcase-icon">💳</div>
+          <div><b>Budget Planning</b><p>Track expenses before checkout and stay within budget.</p></div>
+        </div>
+
+        <div class="showcase-item">
+          <div class="showcase-icon">🛒</div>
+          <div><b>Smart Cart</b><p>Manage shopping lists, products, and offers in one place.</p></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="about" class="about-ui">
+  <div>
+    <div class="label">ABOUT THE PROJECT</div>
+    <h2 class="title">What is <span>Aislo Bahrain?</span></h2>
+    <p class="text">
+      Aislo Bahrain is a smart supermarket shopping application designed to improve the in-store shopping experience in Bahrain.
+      It helps customers find products, manage their budget, organize shopping lists, view offers, and plan meals.
+    </p>
+
+    <div class="badges">
+      <div class="badge"><div class="badge-icon">👤</div><div><b>Better Experience</b><small>Save time & effort</small></div></div>
+      <div class="badge"><div class="badge-icon">📊</div><div><b>Smarter Shopping</b><small>Spend wisely</small></div></div>
+      <div class="badge"><div class="badge-icon">💚</div><div><b>Healthy Choices</b><small>Better living</small></div></div>
+    </div>
+
+    <a class="btn" href="#exhibition">Learn More <span class="arrow">→</span></a>
+  </div>
+
+  <div id="ui">
+    <div class="label">APP UI PREVIEW</div>
+    <div class="previews">
+      <div class="mock">
+        <div class="mockphone"><img src="home.png" alt="Home Screen"></div>
+        <div class="mock-tab">Home</div>
+      </div>
+      <div class="mock">
+        <div class="mockphone"><img src="categories.png" alt="Categories Screen"></div>
+        <div class="mock-tab">Categories</div>
+      </div>
+      <div class="mock">
+        <div class="mockphone"><img src="cart.png" alt="Cart Screen"></div>
+        <div class="mock-tab">Cart</div>
+      </div>
+      <div class="mock">
+        <div class="mockphone"><img src="budget.png" alt="Budget Planner Screen"></div>
+        <div class="mock-tab">Budget Planner</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="problem" class="content-section">
+  <div class="label">THE PROBLEM</div>
+  <h2 class="title">Why <span>Aislo?</span></h2>
+
+  <div class="grid-3">
+    <div class="info one">
+      <h3>🧭 Product Location</h3>
+      <p>Customers often spend extra time searching for products inside large supermarkets.</p>
+    </div>
+    <div class="info two">
+      <h3>💸 Budget Control</h3>
+      <p>Many shoppers exceed their planned budget because they cannot track spending while shopping.</p>
+    </div>
+    <div class="info three">
+      <h3>📝 Forgotten Items</h3>
+      <p>Customers may forget important products when they shop without an organized list.</p>
+    </div>
+  </div>
+</section>
+
+<section id="solution" class="solution-premium">
+  <div class="solution-card">
+    <div class="solution-left">
+      <div class="label">OUR SOLUTION</div>
+      <h2>Shopping Made <span>Smarter</span></h2>
+      <div class="solution-line"></div>
+      <p>
+        Aislo Bahrain combines smart shopping tools in one application. The app helps users search for products,
+        view offers, manage their cart, track their budget, prepare meals, and navigate supermarket aisles easily.
+        It also supports managers by providing useful dashboards and reports.
+      </p>
+    </div>
+
+    <div class="solution-right">
+      <div class="solution-phone">
+        <img src="home.png" alt="Aislo App Home Screen">
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="how" class="flow-section">
+  <div class="flow-header">
+    <div class="label">HOW IT WORKS</div>
+    <h2>Simple Shopping <span>Journey</span></h2>
+    <p>
+      Aislo guides users through a smart and simple shopping
+      experience, from start to finish.
+    </p>
+  </div>
+
+  <div class="flow-map">
+    <div class="flow-line">
+      <svg viewBox="0 0 1400 220" preserveAspectRatio="none">
+        <path d="M20 145 C120 170, 180 140, 260 80 C360 10, 470 70, 540 135 C620 205, 760 170, 835 95 C930 5, 1035 70, 1110 135 C1190 205, 1300 170, 1380 105" />
+      </svg>
+    </div>
+
+    <div class="flow-step step-1">
+      <div class="flow-number">1</div>
+      <div class="flow-dot"></div>
+      <h3>Select Store</h3>
+      <p>The user chooses the supermarket before starting the shopping journey.</p>
+    </div>
+
+    <div class="flow-step step-2">
+      <div class="flow-number">2</div>
+      <div class="flow-dot"></div>
+      <h3>Explore Products</h3>
+      <p>The user searches products, categories, offers, and meal ingredients.</p>
+    </div>
+
+    <div class="flow-step step-3">
+      <div class="flow-number">3</div>
+      <div class="flow-dot"></div>
+      <h3>Use Smart Tools</h3>
+      <p>The user uses smart tools like budget planner, shopping lists, meal prep, and aisle navigation.</p>
+    </div>
+
+    <div class="flow-step step-4">
+      <div class="flow-number">4</div>
+      <div class="flow-dot"></div>
+      <h3>Add To Cart</h3>
+      <p>The user adds selected products and reviews the shopping cart.</p>
+    </div>
+
+    <div class="flow-step step-5">
+      <div class="flow-number">5</div>
+      <div class="flow-dot"></div>
+      <h3>Checkout</h3>
+      <p>The user completes the order with a clearer and more organized shopping process.</p>
+    </div>
+
+    <img class="flow-trolley" src="trolley.png" alt="Shopping Trolley">
+    <div class="flow-arrow">➜</div>
+  </div>
+</section>
+
+<section id="features" class="features-section">
+  <div class="features-head">
+    <div class="label">MAIN FEATURES</div>
+    <h2>Smart Features for <span>Better Shopping</span></h2>
+  </div>
+
+  <div class="features-grid">
+
+    <div class="feature-card">
+      <div class="feature-icon">📍</div>
+      <h3>In-store Navigation</h3>
+      <p>Find product locations easily inside the supermarket using aisle guidance.</p>
+    </div>
+
+    <div class="feature-card">
+      <div class="feature-icon">💳</div>
+      <h3>Budget Planner</h3>
+      <p>Set a shopping budget and track spending before reaching checkout.</p>
+    </div>
+
+    <div class="feature-card">
+      <div class="feature-icon">🛒</div>
+      <h3>Smart Shopping List</h3>
+      <p>Add items, organize products, and avoid forgetting important groceries.</p>
+    </div>
+
+    <div class="feature-card">
+      <div class="feature-icon">🥗</div>
+      <h3>Meal Preparation</h3>
+      <p>Plan meals and connect ingredients with the shopping journey.</p>
+    </div>
+
+    <div class="feature-card">
+      <div class="feature-icon">📊</div>
+      <h3>Manager Dashboard</h3>
+      <p>Support managers with useful insights, reports, and shopping activity data.</p>
+    </div>
+
+  </div>
+</section>
+
+<section id="exhibition" class="content-section">
+  <div class="label">SENIOR PROJECT EXHIBITION</div>
+  <h2 class="title">Project <span>Exhibition</span></h2>
+
+  <div class="grid-3">
+    <div class="info one">
+      <h3>🎓 Project Demo</h3>
+      <p>Visitors can explore the Aislo mobile application and see how the smart shopping tools work.</p>
+    </div>
+    <div class="info two">
+      <h3>📱 App Showcase</h3>
+      <p>The exhibition includes customer features such as product search, cart, budget planner, and store navigation.</p>
+    </div>
+    <div class="info three">
+      <h3>📊 System Value</h3>
+      <p>The project shows how technology can improve supermarket shopping and support better store management.</p>
+    </div>
+  </div>
+</section>
+
+<section id="team" class="content-section">
+  <div class="label">ABOUT US</div>
+  <h2 class="title">Meet the <span>Team</span></h2>
+
+  <div class="team-list">
+    <div class="member">
+      <div>
+        <h4>Khadija A. Redha Algassab</h4>
+        <p>Student ID: 202204712</p>
+        <span>Major: Information System</span>
+      </div>
+      <div class="people">👩‍💻</div>
+    </div>
+
+    <div class="member">
+      <div>
+        <h4>Sara Ahmed Naji</h4>
+        <p>Student ID: 202205030</p>
+        <span>Major: Information System</span>
+      </div>
+      <div class="people">👩‍💻</div>
+    </div>
+  </div>
+</section>
+
+<section id="contact" class="content-section">
+  <div class="label">CONTACT</div>
+  <h2 class="title">Contact <span>Aislo Bahrain</span></h2>
+
+  <div class="content-card">
+    <p class="text"><b>Supervisor:</b> Mrs. Tara Fryad Henari</p>
+    <p class="text"><b>Email:</b> info@aislobahrain.com</p>
+    <p class="text"><b>Website:</b> www.aislobahrain.com</p>
+  </div>
+</section>
+
+<footer>
+  <div class="flogo">
+    <img src="aislo_logo.png" alt="Aislo Logo">
+    <span>Aislo <small>BAHRAIN</small></span>
+  </div>
+
+  <div>✉ info@aislobahrain.com</div>
+  <div>🌐 www.aislobahrain.com</div>
+  <div>© 2026 Aislo Bahrain. All rights reserved.</div>
+  <a class="topbtn" href="#top">↑</a>
+</footer>
+
+</div>
+</body>
+</html>
